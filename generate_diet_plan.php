@@ -1,4 +1,6 @@
 <?php
+$_ENV = parse_ini_file('.env');
+
 $gender = $_POST['gender'] ?? '';
 $age = $_POST['age'] ?? '';
 $weight = $_POST['weight'] ?? '';
@@ -27,7 +29,7 @@ function getResponseFromApi($data): string
         CURLOPT_URL => "https://api.openai.com/v1/chat/completions",
         CURLOPT_HTTPHEADER => array(
             "Content-Type: application/json",
-            "Authorization: Bearer " . getenv('OPENAI_API_KEY')
+            "Authorization: Bearer " . $_ENV['OPENAI_API_KEY']
         ),
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_POST => true,
